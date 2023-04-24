@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: employee_management
   version: '1.0'
-  description: 従業員情報を管理する REST API
+  description: 従業員情報を管理する REST API です。
 servers:
   - url: 'http://localhost:3000'
 paths:
