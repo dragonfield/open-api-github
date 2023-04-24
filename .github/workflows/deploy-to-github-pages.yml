@@ -23,14 +23,12 @@ jobs:
           swagger-cli validate -d docs/employee_management.yaml --type yaml
 
       - name: Generate Swagger UI
-        if: github.event.pull_request.merged == true
         uses: Legion2/swagger-ui-action@v1
         with:
           output: swagger-ui
           spec-file: docs/employee_management.yaml
 
       - name: Deploy to GitHub Pages
-        if: github.event.pull_request.merged == true
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
