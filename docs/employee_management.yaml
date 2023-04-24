@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: employee_management
+  version: '1.0'
+  description: 従業員情報を管理する REST API
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/v1/employees/{id}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+              examples:
+                Example 1:
+                  value:
+                    id: '1'
+                    firstName: Taro
+                    lastName: Yamada
+      operationId: get-v1-employees-by-id
+      description: ID で指定した従業員情報を返します。
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: 従業員情報を一意に特定する ID
+  /v1/employees:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeList'
+              examples:
+                Example 1:
+                  value:
+                    employees:
+                      - id: '1'
+                        firstName: Taro
+                        lastName: Yamada
+                      - id: '2'
+                        firstName: Jiro
+                        lastName: Yamada
+      operationId: get-v1-employees
+      description: データベースの全ての従業員情報を返します。
+components:
+  schemas:
+    Employee:
+      title: Employee
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+    EmployeeList:
+      title: EmployeeList
+      type: object
+      properties:
+        employees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employee'
